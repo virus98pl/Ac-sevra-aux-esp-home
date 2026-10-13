@@ -73,7 +73,7 @@ W pliku urządzenia zamiast `!include` wpisz:
 
 ```yaml
 packages:
-  aux: github://birus98pl/aux-ac-esphome/klima-aux-wspolne.yaml@main
+  aux: github://virus98pl/aux-ac-esphome/klima-aux-wspolne.yaml@main
 ```
 
 Każda zmiana w repo trafi do klim po ponownym **Install**.
