@@ -1,0 +1,96 @@
+# =====================================================================
+#  WSPÓLNY PAKIET – klimatyzatory AUX/Sevra przez ESP32-C3 (GrKoR aux_ac)
+#  W Home Assistant zapisz jako: /homeassistant/esphome/.klima-aux-wspolne.yaml
+#  Wymaga w pliku urządzenia: substitutions name / friendly_name / ap_ssid
+# =====================================================================
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: github://GrKoR/esphome_aux_ac_component
+    components: [aux_ac]
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  output_power: 8.5          # celowo nisko – C3 SuperMini ma słabą antenę
+  power_save_mode: NONE
+  fast_connect: true
+  ap:
+    ssid: ${ap_ssid}
+
+captive_portal:
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG   # logi po USB, UART zostaje dla klimy
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+uart:
+  id: ac_uart_bus
+  tx_pin: GPIO4              # brak komunikacji ("no pings from HVAC")? zamień z rx_pin
+  rx_pin: GPIO5
+  baud_rate: 4800
+  data_bits: 8
+  parity: EVEN
+  stop_bits: 1
+
+climate:
+  - platform: aux_ac
+    id: aux
+    name: null               # encja = nazwa urządzenia
+    uart_id: ac_uart_bus
+    period: 7s
+    timeout: 150
+    optimistic: true
+    show_action: true
+    indoor_temperature:
+      name: "Temperatura wewnętrzna"
+    outdoor_temperature:
+      name: "Temperatura zewnętrzna"
+    inverter_power:
+      name: "Moc sprężarki"
+    defrost_state:
+      name: "Odszranianie"
+    display_state:
+      id: aux_display
+      name: "Wyświetlacz"
+    visual:
+      min_temperature: 16
+      max_temperature: 32
+      temperature_step: 1
+    supported_modes: [HEAT_COOL, COOL, HEAT, DRY, FAN_ONLY]
+    custom_fan_modes: [MUTE, TURBO]
+    supported_presets: [SLEEP]
+    custom_presets: [CLEAN, HEALTH, ANTIFUNGUS]
+    supported_swing_modes: [VERTICAL, HORIZONTAL, BOTH]
+
+switch:
+  - platform: template
+    name: "Ekran"
+    icon: mdi:monitor
+    lambda: return id(aux_display).state;
+    turn_on_action:
+      - aux_ac.display_on: aux
+    turn_off_action:
+      - aux_ac.display_off: aux
+
+sensor:
+  - platform: wifi_signal
+    name: "Sygnał Wi-Fi"
+    update_interval: 120s
+  - platform: uptime
+    name: "Czas pracy"
+    update_interval: 300s
+
+button:
+  - platform: restart
+    name: "Restart"

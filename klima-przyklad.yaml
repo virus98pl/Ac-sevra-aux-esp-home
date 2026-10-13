@@ -1,0 +1,20 @@
+# Plik jednej klimy – zmień tylko nazwy. Cała konfiguracja jest we wspólnym pakiecie.
+substitutions:
+  name: klima-salon            # małe litery, bez spacji i polskich znaków
+  friendly_name: Klima Salon
+  ap_ssid: Klima-Salon
+
+packages:
+  aux: !include .klima-aux-wspolne.yaml
+  # albo prosto z GitHuba:
+  # aux: github://TWOJ-LOGIN/aux-ac-esphome/klima-aux-wspolne.yaml@main
+
+api:
+  encryption:
+    key: !secret klima_salon_api   # klucz wygeneruje ESPHome przy dodawaniu urządzenia
+
+# Jeśli w logu jest "no pings from HVAC", odkomentuj:
+# uart:
+#   - id: !extend ac_uart_bus
+#     tx_pin: GPIO5
+#     rx_pin: GPIO4
