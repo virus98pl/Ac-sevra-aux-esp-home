@@ -7,7 +7,7 @@ substitutions:
 packages:
   aux: !include .klima-aux-wspolne.yaml
   # albo prosto z GitHuba:
-  # aux: github://TWOJ-LOGIN/aux-ac-esphome/klima-aux-wspolne.yaml@main
+  # aux: github://virus98pl/aux-ac-esphome/klima-aux-wspolne.yaml@main
 
 api:
   encryption:
