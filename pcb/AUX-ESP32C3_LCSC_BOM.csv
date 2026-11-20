@@ -1,0 +1,15 @@
+﻿Quantity,Manufacturer Part Number,LCSC Part Number,Comment,Designator
+2,K7805M-1000R3,C5369649,Przetwornica DC-DC 12V->5V 1A SIP-3,U1
+3,MF-R050,C208476,"Bezpiecznik PTC 0,5A THT P=5,1mm",F1
+3,P6KE18A-E3/54,C1975053,Dioda TVS 18V DO-15,D1
+3,1N5819,C237257,Dioda Schottky 1A 40V DO-41 THT,D2
+3,BAT85S-TR,,Dioda Schottky 200mA 30V DO-35 THT,D3
+5,CN035M220LO5*11L-1A4T,C512951,Kondensator elektrolityczny 22uF 35V D5x11 THT,"C1,C2"
+4,CFR0W4J0102A50,C66649,"Rezystor 1k 0,25W THT (montaz pionowy)",R1
+4,MFR-12FTE52-2K2,,"Rezystor 2,2k 1/6W THT mini 0204",R2
+4,MFR-12FTE52-3K3,,"Rezystor 3,3k 1/6W THT mini 0204",R3
+4,MFR-12FTE52-10K,C172889,Rezystor 10k 1/6W THT mini 0204,R4
+2,XY350V-3.5-4P,C557656,"Zlacze srubowe 4P raster 3,5mm THT",J1
+3,,,LED 3mm zielona THT,LED1
+3,,,"Listwa goldpin 1x2 2,54mm THT",JP1
+3,,,"Zworka 2,54mm",JP1
