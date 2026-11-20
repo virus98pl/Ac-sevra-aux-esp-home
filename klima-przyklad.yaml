@@ -7,13 +7,19 @@ substitutions:
 packages:
   aux: !include .klima-aux-wspolne.yaml
   # albo prosto z GitHuba:
-  # aux: github://virus98pl/aux-ac-esphome/klima-aux-wspolne.yaml@main
+  # aux: github://virus98pl/Ac-sevra-aux-esp-home/klima-aux-wspolne.yaml@main
 
 api:
   encryption:
     key: !secret klima_salon_api   # klucz wygeneruje ESPHome przy dodawaniu urządzenia
 
-# Jeśli w logu jest "no pings from HVAC", odkomentuj:
+# Płytka AUX-ESP32C3 v1.2 (wariant B) – odkomentuj:
+# uart:
+#   - id: !extend ac_uart_bus
+#     tx_pin: GPIO21
+#     rx_pin: GPIO20
+
+# Wariant A z modułów: jeśli w logu jest "no pings from HVAC", odkomentuj:
 # uart:
 #   - id: !extend ac_uart_bus
 #     tx_pin: GPIO5
